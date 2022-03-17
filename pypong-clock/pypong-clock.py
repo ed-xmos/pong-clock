@@ -28,20 +28,25 @@ background = None
 os.environ["SDL_FBDEV"] = "/dev/fb1"
 
 RESOLUTION = (320, 200)
+RESOLUTION = (240, 180)
+RESOLUTION = (640, 400)
+RESOLUTION = (480, 320)
 # RESOLUTION = (256, 128)
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
-PADDLE_HEIGHT = 25
+PADDLE_HEIGHT = 50
 PADDLE_WIDTH = 8
 BALL_WIDTH = 12
 BALL_HEIGHT = 12
+DIGIT_SIZE = (30, 56)
 PADDLE_GUTTER_OFFSET = 4  	# Offset for the paddles
-CENTER_DIVIDER_SIZE = 2		# Size of the squares that divide the playing area in half
-FIELD_EDGE_WIDTH = 3		# Edging on the top and bottom playing area
-FIELD_EDGE_HEIGHT = 1		# Height of edging
-FIELD_EDGE_OFFSET = 2		# Offset between the display surface edge and the edging
+CENTER_DIVIDER_SIZE = 8		# Size of the squares that divide the playing area in half
+FIELD_EDGE_WIDTH = 4		# Edging on the top and bottom playing area
+FIELD_EDGE_HEIGHT = 4		# Height of edging
+FIELD_EDGE_OFFSET = 8 		# Offset between the display surface edge and the edging
 CAN_RESET_HOUR = True	    # On the hour we reset the score to 00, 00
 SCREEN_MODE = pygame.RESIZABLE #pygame.SCALED pygame.FULLSCREEN
+SCREEN_MODE = pygame.FULLSCREEN
 
 def main():
 
@@ -66,8 +71,8 @@ def main():
     game_ball = Ball(ball_pos, ball_paddles, (2.0, 3.0), SCREEN, play_area)
 
     # Configure the score display which will show the time
-    right_score_display = ScoreDisplay((RESOLUTION[0] / 2 + 18, 20, 30, 50), (15, 28), 00, 'right')
-    left_score_display = ScoreDisplay((RESOLUTION[0] / 2 - 18, 20, 60, 100), (15, 28), 00, 'left', True)
+    right_score_display = ScoreDisplay((RESOLUTION[0] / 2 + 18, 20, 30, 50), DIGIT_SIZE, 00, 'right')
+    left_score_display = ScoreDisplay((RESOLUTION[0] / 2 - 18, 20, 60, 100), DIGIT_SIZE, 00, 'left', True)
 
     # Wire up the events we will be using
     game_ball.point_scored += right_score_display.increment_score
